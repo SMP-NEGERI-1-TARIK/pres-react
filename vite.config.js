@@ -24,4 +24,13 @@ export default defineConfig({
       },
     },
   },
+   // ✅ TAMBAHKAN INI UNTUK VERCEL
+  build: {
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
 });
