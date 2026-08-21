@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/api/(.*)",
+      "destination": "https://apipresensi.sidoarjokab.go.id/api/$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

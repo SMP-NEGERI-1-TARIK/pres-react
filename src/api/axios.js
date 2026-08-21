@@ -1,10 +1,15 @@
 import axios from "axios";
 
 // ============================================
-// ✅ PAKAI RELATIVE URL (AKAN DI-PROXY OLEH VITE)
+// ✅ RELATIVE URL DI DEV (DI-PROXY OLEH VITE)
+// ✅ URL LANGSUNG KE BACKEND DI PRODUCTION
+//    (proxy vite.config.js server.proxy TIDAK ikut ter-build,
+//     jadi tidak berlaku sama sekali saat sudah di-deploy)
 // ============================================
 const api = axios.create({
-  baseURL: "/api/v1", // ← PAKAI INI! (tanpa domain)
+  baseURL: import.meta.env.DEV
+    ? "/api/v1"
+    : "https://apipresensi.sidoarjokab.go.id/api/v1",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
