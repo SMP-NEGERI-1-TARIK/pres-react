@@ -1,15 +1,15 @@
 import axios from "axios";
 
 // ============================================
-// ✅ RELATIVE URL DI DEV (DI-PROXY OLEH VITE)
-// ✅ URL LANGSUNG KE BACKEND DI PRODUCTION
-//    (proxy vite.config.js server.proxy TIDAK ikut ter-build,
-//     jadi tidak berlaku sama sekali saat sudah di-deploy)
+// ✅ SELALU PAKAI RELATIVE URL
+//    Backend (apipresensi.sidoarjokab.go.id) TIDAK
+//    mengizinkan CORS untuk request langsung dari browser,
+//    jadi harus selalu lewat proxy server-side:
+//    - dev: vite.config.js -> server.proxy
+//    - production: vercel.json -> rewrites
 // ============================================
 const api = axios.create({
-  baseURL: import.meta.env.DEV
-    ? "/api/v1"
-    : "https://apipresensi.sidoarjokab.go.id/api/v1",
+  baseURL: "/api/v1",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
